@@ -9,3 +9,14 @@ class Review(BaseModel):
 
         user.add_review(self)
         place.add_review(self)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'text': self.text,
+            'user_id': self.user.id if self.user else None,
+            'place_id': self.place.id if self.place else None,
+            'type': self.type,
+            'created_at': str(self.created_at),
+            'updated_at': str(self.updated_at)
+        }
