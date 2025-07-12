@@ -65,3 +65,17 @@ def create_app(config_class):
     ...
     app.register_blueprint(amenities_bp)
     ...
+
+from .extensions import db
+
+def create_app(config_class):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    db.init_app(app)
+
+    # Register blueprints here
+    from .api.users import users_bp
+    app.register_blueprint(users_bp)
+
+    return app
