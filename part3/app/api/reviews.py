@@ -41,3 +41,20 @@ def create_review(place_id):
     db.session.commit()
 
     return jsonify(review.to_dict()), 201
+
+@reviews_bp.route('/api/v1/reviews/<int:review_id>', methods=['DELETE'])
+@jwt_required()
+def delete_review(review_id):
+    user_id = get_jwt_identity()
+    claims = get_jwt()
+
+    review = Review.query.get_or_404(review_id)
+
+    # Admins bypass ownership
+    if review.user_id != user_id and not claims.get('is_admin'):
+        return jsonify({'message': 'Unauthorized'}), 403
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return jsonify({'message': 'Review deleted'}), 200
