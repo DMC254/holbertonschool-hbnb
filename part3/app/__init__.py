@@ -32,3 +32,19 @@ def create_app(config_class):
     ...
     app.register_blueprint(users_bp)
     return app
+
+from .extensions import db, bcrypt, jwt
+
+def create_app(config_class):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    db.init_app(app)
+    bcrypt.init_app(app)
+    jwt.init_app(app)
+
+    # Register blueprints
+    from .api.users import users_bp
+    app.register_blueprint(users_bp)
+
+    return app

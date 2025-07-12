@@ -30,3 +30,31 @@ def register_user():
     db.session.commit()
 
     return jsonify(new_user.to_dict()), 201
+
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import create_access_token
+from ..models.user import User
+from ..extensions import db
+
+users_bp = Blueprint('users', __name__)
+
+# Register user already exists here
+
+@users_bp.route('/api/v1/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+    if not all([email, password]):
+        return jsonify({'message': 'Email and password required'}),400
+    
+    user = User.query.filter_by(email=email).first()
+
+    if not user or not user.check_password(password):
+        return jsonify({'message': 'Invalid credentials'}), 401
+    
+    # Include custom claims if needed
+    access_token = create_access_token(identity=user.id, additional_claims={'is_admin': user.is_admin})
+
+    return jsonify({'access_token': access_token}), 200

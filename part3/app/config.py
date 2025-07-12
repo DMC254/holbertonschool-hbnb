@@ -11,3 +11,9 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     SECRET_KEY = 'a-production-secret-key'
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:pass@localhost/db_name'
+
+class Config:
+    SECRET_key = 'super-secret-key'  # Used for Flask session
+    JWT_SECRET_KEY = 'super-jwt-secret-key'  #Used for JWT
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///dev.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
