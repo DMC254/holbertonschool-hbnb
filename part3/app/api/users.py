@@ -191,3 +191,22 @@ def create_user():
     data = request.get_json()
     user = facade.create_user(**data)
     return jsonify(user.to_dict()), 201
+
+from flask import Blueprint, jsonify, request
+from ..facade.user_facade import UserFacade
+
+users_bp = Blueprint('users', __name__)
+facade = UserFacade()
+
+@users_bp.route('/api/v1/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = facade.get_user(user_id)
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+    return jsonify(user.to_dict()), 200
+
+@users_bp.route('/api/v1/users/', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    user = facade.create_user(**data)
+    return jsonify(user.to_dict()), 201

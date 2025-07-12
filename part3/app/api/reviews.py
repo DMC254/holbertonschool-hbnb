@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..extensions import db
 from ..models.review import Review
 from ..models.user import User
+from ..models.place import Place
 
 reviews_bp = Blueprint('reviews', __name__)
 

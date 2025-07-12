@@ -55,3 +55,37 @@ class User(db.Model):
             'email': self.email
             # Don’t expose password!
         }
+
+from ..extensions import db
+from .base_model import BaseModel
+from werkzeug.security import generate_password_hash, check_password_hash
+
+class User(BaseModel):
+    __tablename__ = 'users'
+
+    first_name = db.Column(db.String(128))
+    last_name = db.Column(db.String(128))
+    email = db.Column(db.String(128), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+
+    @property
+    def password(self):
+        raise AttributeError('Password is write-only.')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'is_admin': self.is_admin
+            # No password_hash exposed!
+        }
