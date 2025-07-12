@@ -59,6 +59,8 @@ def login():
 
     return jsonify({'access_token': access_token}), 200
 
+from flask_jwt_extended import jwt_required
+
 @users_bp.route('.api/v1/users/me', methods=['PUT'])
 @jwt_required()
 def update_current_user():
