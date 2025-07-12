@@ -89,3 +89,30 @@ class User(BaseModel):
             'is_admin': self.is_admin
             # No password_hash exposed!
         }
+
+from .place import Place
+from .review import Review
+
+class User(BaseModel):
+    __tablename__ = 'users'
+
+    # existing fields...
+    first_name = db.Column(db.String(128))
+    last_name = db.Column(db.String(128))
+    email = db.Column(db.String(128), unique=True, nullable=False)
+    password = db.Column(db.String(256), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+
+    places = db.relationship('Place', backref='owner', lazy=True)
+    reviews = db.relationship('Review', backref='author', lazy=True)
+
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'is_admin': self.is_admin,
+            # password is not returned!
+        }
+        return data

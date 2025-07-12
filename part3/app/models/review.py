@@ -4,10 +4,11 @@ from .base_model import BaseModel
 class Review(BaseModel):
     __tablename__ = 'reviews'
 
-    place_id = db.Column(db.Integer, nullable=False)  # FK later
-    user_id = db.Column(db.Integer, nullable=False)   # FK later
+    place_id = db.Column(db.Integer, db.ForeignKey('places.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
     rating = db.Column(db.Integer, nullable=False)
-    comment = db.Column(db.Text, nullable=True)
+    comment = db.Column(db.Text)
 
     def to_dict(self):
         return {
