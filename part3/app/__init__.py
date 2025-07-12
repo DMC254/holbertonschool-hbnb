@@ -58,3 +58,10 @@ def create_app(config_class):
     app.register_blueprint(reviews_bp)
     ...
     return app
+
+from .api.amenities import amenities_bp
+
+def create_app(config_class):
+    ...
+    app.register_blueprint(amenities_bp)
+    ...
