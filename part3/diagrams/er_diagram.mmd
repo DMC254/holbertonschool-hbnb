@@ -33,8 +33,8 @@ erDiagram
         TEXT name
     }
     place_amenity {
-        INTEGER place_id PK FK
-        INTEGER amenity_id PK FK
+        INTEGER place_id PK, FK
+        INTEGER amenity_id PK, FK
     }
 
     users ||--o{ PLACES : owns
