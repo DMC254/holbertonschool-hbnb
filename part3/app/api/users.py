@@ -58,3 +58,21 @@ def login():
     access_token = create_access_token(identity=user.id, additional_claims={'is_admin': user.is_admin})
 
     return jsonify({'access_token': access_token}), 200
+
+@users_bp.route('.api/v1/users/me', methods=['PUT'])
+@jwt_required()
+def update_current_user():
+    user_id = get_jwt_identity()
+    user = User.query.get_or_404(user_id)
+
+    data = request.get_json()
+
+    # Do NOT allow email or password update here
+    if 'email' in data or 'password' in data:
+        return jsonify({'message': 'You cannot update email or password here.'}), 400
+    
+    user.first_name = data.get('first_name', user.first_name)
+    user.last_name = data.get('last_name', user.last_name)
+
+    db.session.commit()
+    return jsonify(user.to_dict()), 200
