@@ -80,3 +80,20 @@ def update_place(place_id):
 
     db.session.commit()
     return jsonify(place.to_dict()), 200
+
+from flask import Blueprint, request, jsonify
+from ..facade.place_facade import PlaceFacade
+
+places_bp = Blueprint('places', __name__)
+facade = PlaceFacade()
+
+@places_bp.route('/api/v1/places/', methods=['POST'])
+def create_place():
+    data = request.get_json()
+    place = facade.create_place(**data)
+    return jsonify(place.to_dict()), 201
+
+@places_bp.route('/api/v1/places/', methods=['GET'])
+def list_places():
+    places = facade.list_places()
+    return jsonify([p.to_dict() for p in places]), 200
