@@ -12,3 +12,4 @@ def admin_required(fn):
             return jsonify({'message': 'Admin privilege required'}), 403
         return fn(*args, **kwargs)
     return wrapper
+8
