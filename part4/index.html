@@ -1,40 +1,39 @@
 <!DOCTYPE html>
-<html lang=""en">
+<html lang="en">
 <head>
-    <meta charset=""UTF-8">
-    <title>List of Places</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="images/icon.png">
+  <meta charset="UTF-8">
+  <title>List of Places</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/icon.png">
 </head>
 <body>
 
-    <header>
-        <img src="images/logo.png" class="logo" alt="App Logo">
-        <a href="login.html" class="login-button">Login</a>
-    </header>
+  <header>
+    <img src="images/logo.png" class="logo" alt="App Logo">
+    <a href="login.html" id="login-link" class="login-button">Login</a>
+  </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-    </nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+  </nav>
 
-    <main class="places-list">
-        <div class="place-card">
-            <h2>Beach House</h2>
-            <p>$150 per night</p>
-            <a href="place.html" class="details-button">View Details</a>
-        </div>
+  <main>
+    <label for="price-filter">Filter by price:</label>
+    <select id="price-filter">
+      <option value="10">Under $10</option>
+      <option value="50">Under $50</option>
+      <option value="100">Under $100</option>
+      <option value="all">All</option>
+    </select>
 
-        <div class="place-card">
-            <h2>Mountain Cabin</h2>
-            <p>$200 per night</p>
-            <a href="place.html" class="details-button">View Details</a>
-        </div>
-    </main>
+    <section id="places-list"></section>
+  </main>
 
-    <footer>
-        <p>All rights reserved.</p>
-    </footer>
+  <footer>
+    <p>All rights reserved.</p>
+  </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
