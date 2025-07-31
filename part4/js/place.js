@@ -37,7 +37,7 @@ function checkAuthentication(token) {
 // Fetch place details from API
 async function fetchPlaceDetails(token, placeId) {
   try {
-    const response = await fetch(`http://127.0.0.1:5000/api/v1/places/${placeId}`, {
+    const response = await fetch(`http://127.0.0.1:5000${placeId}`, {
       method: 'GET',
       headers: {
         'Authorization': token ? `Bearer ${token}` : ''

@@ -48,7 +48,7 @@ function getPlaceIdFromURL() {
 }
 
 async function submitReview(token, placeId, comment, rating) {
-  return await fetch('http://127.0.0.1:5000/api/v1/reviews', {
+  return await fetch('http://127.0.0.1:5000', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
