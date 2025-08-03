@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>List of Places</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="images/icon.png">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="icon" href="static/images/icon.png">
 </head>
 <body>
 
   <header>
-    <img src="images/logo.png" class="logo" alt="App Logo">
+    <img src="static/images/logo.png" class="logo" alt="App Logo">
     <a href="login.html" id="login-link" class="login-button">Login</a>
   </header>
 
@@ -21,9 +21,9 @@
   <main>
     <label for="price-filter">Filter by price:</label>
     <select id="price-filter">
+      <option value="10">Under $10</option>
+      <option value="50">Under $50</option>
       <option value="100">Under $100</option>
-      <option value="150">Under $150</option>
-      <option value="200">Under $200</option>
       <option value="all">All</option>
     </select>
 
@@ -34,6 +34,6 @@
     <p>All rights reserved.</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="static/js/main.js"></script>
 </body>
 </html>
