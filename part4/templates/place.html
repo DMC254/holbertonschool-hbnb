@@ -3,28 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Place Details</title>
-  <link rel="stylesheet" href="static/css/styles.css">
-  <link rel="icon" href="static/images/icon.png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">
 </head>
 <body>
   <header>
-    <img src="static/images/logo.png" class="logo" alt="App Logo">
-    <a href="login.html" id="login-link" class="login-button">Login</a>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="App Logo">
+    <a href="{{ url_for('login') }}" id="login-link" class="login-button">Login</a>
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('login') }}">Login</a>
   </nav>
 
   <main>
-    <!-- This will be filled dynamically -->
     <section id="place-details" class="place-details"></section>
-
-    <!-- Reviews will be filled by JS -->
     <section id="reviews" class="reviews"></section>
-
-    <!-- Add Review form shown only if user is logged in -->
     <section id="add-review" class="add-review" style="display: none;">
       <h3>Add Review</h3>
       <form id="review-form">
@@ -41,6 +36,6 @@
     <p>All rights reserved.</p>
   </footer>
 
-  <script src="static/js/place.js"></script>
+  <script src="{{ url_for('static', filename='js/place.js') }}"></script>
 </body>
 </html>

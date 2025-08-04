@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Review</title>
-  <link rel="stylesheet" href="static/css/styles.css">
-  <link rel="icon" href="static/images/icon.png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">
 </head>
 <body>
 
   <header>
-    <img src="static/images/logo.png" class="logo" alt="App Logo">
-    <a href="login.html" class="login-button">Login</a>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="App Logo">
+    <a href="{{ url_for('login') }}" class="login-button">Login</a>
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('login') }}">Login</a>
   </nav>
 
   <main>
@@ -36,6 +36,6 @@
     <p>All rights reserved.</p>
   </footer>
 
-  <script src="static/js/add_review.js"></script>
+  <script src="{{ url_for('static', filename='js/add_review.js') }}"></script>
 </body>
 </html>
